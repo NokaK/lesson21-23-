@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="openModal">open modal</button>
+    <div id="modal">
+        <div class="content">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus iure rerum sequi minima natus, non
+                consequuntur minus commodi mollitia quam maiores odit harum inventore facilis aliquam a quaerat suscipit
+                quis.
+            </p>
+            <div id="close">
+                <img src="https://onoff.ge/Themes/Onoffgemeus/Content/img/svg/close.svg" alt="close">
+            </div>
+        </div>
+    </div>
+    <p id="loader">loading...</p>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const openModal = document.querySelector('button');
+        const closeModal = document.getElementById('close');
+
+        openModal.addEventListener('click', () => {
+            modal.style.top = '0px';
+
+        });
+        modal.addEventListener('click', () => {
+            modal.style.top = '-100%';
+        });
+        const getSum = (a, b) => {
+            return a + b;
+        }
+
+        const getTextToUpperCase = (text) => {
+            return text.toUpperCase();
+        }
+
+        getTextToUpperCase('hello');
+        getSum(5, 6);
+
+
+
+        //async function, promise
+
+
+        setTimeout(() => {
+            const p = document.createElement('p');
+            p.textContent = 'second';
+            document.body.appendChild(p);
+        }, 3000);
+
+
+        const getData = (number) => {
+            return new Promise((resolve, reject) => {
+                if (number > 5) {
+                    setTimeout(() => {
+                        resolve('hello');
+                    }, 2000);
+                } else {
+                    setTimeout(() => {
+                        reject('error');
+                    }, 2000);
+                }
+
+
+            });
+        }
+
+        const getName = (name) => {
+            return new Promise((resolve, reject) => {
+                if (name.length > 5) {
+                    setTimeout(() => {
+                        resolve(name);
+                    }, 3000);
+                } else {
+                    setTimeout(() => {
+                        reject('string is too short');
+                    }, 3000);
+                }
+
+
+            });
+        }
+
+
+        // getData(1)
+        //     .then((data) => {
+        //         console.log(data);
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     })
+
+        // getName("giorgi")
+        //     .then((data) => {
+        //         console.log(data);
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     })
+
+        Promise.race([getData(6), getName("giorgi")]).then((data) => {
+            console.log(data);
+        }).catch((error) => {
+            console.log(error);
+        })
+
+
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+            loader.style.display = 'none';
+            const p = document.createElement('p');
+            p.textContent = 'hello';
+            document.body.appendChild(p);
+        }, 2000);
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

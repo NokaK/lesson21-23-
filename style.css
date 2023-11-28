@@ -1,0 +1,57 @@
+.input-block {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+button {
+  display: none;
+  width: 100%;
+  background-color: black;
+  border: none;
+  color: #fff;
+  padding: 15px 0;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 1%;
+  border: 1px solid red;
+  padding: 10px 5px;
+}
+
+.input-block input {
+  margin: 10px 0;
+}
+
+#modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: -100%;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: top 0.3s linear;
+}
+.content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+img {
+  width: 50px;
+}
+
+#loader {
+  font-size: 40px;
+}
+@media (max-width: 1024px) {
+  button {
+    display: block;
+  }
+}

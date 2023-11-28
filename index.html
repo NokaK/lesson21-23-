@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <form action="" name="signUp">
+        <div class="input-block">
+            <label for="firstName">first name</label>
+            <input type="text" name="firstName" id="firstName">
+        </div>
+        <div class="input-block">
+            <label for="lastName">last name</label>
+            <input type="text" name="lastName" id="lastName">
+        </div>
+        <div class="input-block">
+            <label for="email">email</label>
+            <input type="email" name="email" id="email">
+        </div>
+        <div class="input-block">
+            <label for="password">password</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div class="input-block">
+            <label for="confirmPassword">confirmPassword</label>
+            <input type="password" name="confirmPassword" id="confirmPassword">
+        </div>
+
+        <button>send</button>
+    </form>
+
+    <div class="input-block">
+        <input type="text" id="color">
+        <button id="add">add</button>
+    </div>
+
+    <ul id="colors"></ul>
+
+
+
+    <script>
+
+        //          დავალება 1
+        // შექმენით ფორმა და დაამატეთ ვალიდაციები შემდეგი პირობებით:
+        // firstName: შეამოწმეთ თუ სახელის სიგრძე ნაკლებია 6 სიმბოლოზე  გამოაჩინეთ ერორი;
+        // lastName: შეამოწმეთ თუ გვარის სიგრძე  ნაკლებია 6 სიმბოლოზე  გამოაჩინეთ ერორი;
+        // email:   დაამატეთ რეგექსის ვალდიაცია, ამ მასალის მიხედვით https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+        // password: შეამოწმეთ თუ პაროლის სიგრძე ნაკლებია 6 სიმბოლოზე გამოაჩინეთ ერორი;
+        // confirm password შეამოწმეთ მისი მნიშვნელობა  ემთხვევა თუ არა password ველში ჩაწერილ მნიშნელობას, თუ არ ემთხვევა გამოაჩინეთ ერორი;
+        // description: დაამატეთ textarea და შეზღუდეთ სიმბოლოების რაოდენობა მაქს 100 სიმბოლო თუ 100 სიმბოლოზე მეტს ჩაწერთ, გამოაჩინეთ ერორი;
+
+        const form = document.forms.signUp;
+
+        const validateEmail = (email) => {
+            return
+
+        };
+        const errorElement = document.createElement("p");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            try {
+                if (form.firstName.value.length < 2) {
+                    throw new Error("first name must be more than 6 characters");
+
+                }
+
+                if (form.lastName.value.length < 2) {
+                    throw new Error("last name must be more than 6 characters");
+                }
+                if (!form.email.value.match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                )) {
+                    throw new Error("email is not valid")
+                } else {
+                    errorElement.remove()
+                }
+                if (form.password.value !== form.confirmPassword.value) {
+                    throw new Error("passwords do not match")
+                }
+                const data = {
+                    firstName: form.firstName.value,
+                    lastName: form.lastName.value,
+                    email: form.email.value,
+                    password: form.password.value,
+                    confirmPassword: form.confirmPassword.value,
+
+                }
+
+                console.log(data)
+                //send data to server
+
+            } catch (error) {
+
+                errorElement.classList.add("error");
+                errorElement.textContent = error.message;
+                document.body.appendChild(errorElement);
+            }
+
+        })
+
+
+        //         დავალება 2
+        // დაამატეთ ინფუთის ველი;
+        // ღილაკზე დაჭერისას , რასაც ჩაწერთ ინფუთის ველში, დააფუშეთ ცარიელ მასივში;
+        //  ამ მასივში შენახული  მნიშვნელობები გამოიტანეთ li ტეგების შიგნით.
+
+        const inputColor = document.getElementById("color");
+        const addButton = document.getElementById("add");
+        const ul = document.getElementById("colors");
+
+
+        let colors = [];
+        addButton.addEventListener("click", () => {
+            colors.push(inputColor.value);
+            colors.map((color) => {
+                if (color.length > 3) {
+                    const li = document.createElement("li");
+                    li.textContent = inputColor.value;
+                    ul.appendChild(li);
+                    document.body.appendChild(ul);
+                }
+            })
+            inputColor.value = "";
+            colors = [];
+        })
+
+
+
+
+
+
+        // დავალება 3
+        // შექმენით 5 ელემენტიანი  ობიექტების მასივი (სახელი, გვარი, ასაკი, პროფესია);
+        //  გაფილტრეთ ის ელემენტები, რომლის ასაკიც მეტია 18ზე;
+        // გამოიტანეთ მხოლოდ გაფილტრული ობიექტები  li კონტენტის შიგნით.
+
+
+    </script>
+</body>
+
+</html>
